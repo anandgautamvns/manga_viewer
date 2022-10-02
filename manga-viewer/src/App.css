@@ -1,0 +1,95 @@
+.App {
+  display: block;
+}
+
+.header {
+  border-bottom: 1px solid #ddd;
+  background-color: #e7e7e7;
+}
+
+.main-body {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 120px);
+  overflow: auto;
+  padding-top: 10px;
+}
+
+.book-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.book-title {
+  padding: 10px;
+}
+
+.activeChapter {
+  background-color: #1890ff;
+  color: #fff;
+}
+
+.deactiveChapter {
+  background-color: #fff;
+  color: #222;
+}
+
+.book-chapter {
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.book-chapter:hover,
+.book-chapter:active {
+  background-color: #1890ff;
+  color: #fff;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.arrow-icon {
+  font-size: 30px;
+}
+
+.previous {
+  width: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+.previous:hover,
+.previous:focus {
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.next {
+  width: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+.next:hover,
+.next:focus {
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.page-footer {
+  text-align: center;
+}
