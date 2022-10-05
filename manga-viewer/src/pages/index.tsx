@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isNil } from "lodash";
 import Chapter from "./chapter";
-import Loading from "./components";
 import {
   requestBookDetailPending,
   requestBookListPending,
@@ -11,27 +10,19 @@ import {
 } from "./states/action";
 import {
   selectBookDetailData,
-  selectBookDetailLoading,
   selectBookListData,
-  selectBookListLoading,
   selectChapterDetailData,
-  selectChapterDetailLoading,
 } from "./states/selector";
 import { BookListEntity } from "./states/types";
 
 const Page: React.FC = () => {
   const dispatch = useDispatch();
   const bookList = useSelector(selectBookListData);
-  const bookListLoading = useSelector(selectBookListLoading);
-
   const bookDetail = useSelector(selectBookDetailData);
-  const bookDetailLoading = useSelector(selectBookDetailLoading);
-
   const chapterDetail = useSelector(selectChapterDetailData);
-  const chapterDetailLoading = useSelector(selectChapterDetailLoading);
-
   const [bookTitleDetail, setBookTitleDetail] = useState<BookListEntity>();
   const [bookChapter, setBookChapter] = useState<number>(1);
+  const [count, setCount] = useState<number>(1)
 
   useEffect(() => {
     dispatch<any>(requestBookListPending());
@@ -55,11 +46,13 @@ const Page: React.FC = () => {
   const handleBookTitle = (data: BookListEntity) => {
     setBookTitleDetail(data);
     dispatch<any>(requestBookDetailPending(data.id));
+    setCount(1)
   };
 
   const handleChapter = (data: number) => {
     setBookChapter(data);
     dispatch<any>(requestChapterDetailPending(data));
+    setCount(1)
   };
 
   return (
@@ -109,11 +102,12 @@ const Page: React.FC = () => {
         </Row>
       </header>
       <div className="main-body">
-        {bookListLoading || bookDetailLoading || chapterDetailLoading ? (
-          <Loading />
-        ) : (
-          <Chapter bookTitleDetail={bookTitleDetail} bookChapterDetail={bookChapter} />
-        )}
+        <Chapter
+          bookTitleDetail={bookTitleDetail}
+          bookChapterDetail={bookChapter}
+          count={count}
+          setCount={setCount}
+        />
       </div>
     </div>
   );
